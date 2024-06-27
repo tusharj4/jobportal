@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Job</title>
+</head>
+<body>
+    <h2>Submit a New Job</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Job</button>
+    </form>
+</body>
+</html>

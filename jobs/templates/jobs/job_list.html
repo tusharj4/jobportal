@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Listings</title>
+</head>
+<body>
+    <h1>Job Listings</h1>
+    {% for job in jobs %}
+        <div>
+            <h2><a href="{% url 'job_detail' job.id %}">{{ job.title }}</a></h2>
+            <p>Company: <a href="{% url 'company_detail' job.company.id %}">{{ job.company.name }}</a></p>
+            <p>Location: {{ job.location }}</p>
+            <p>Salary: ${{ job.salary }}</p>
+            <form method="get" action="{% url 'job_list' %}">
+                <input type="text" name="q" value="{{ query|default:'' }}" placeholder="Search jobs...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    {% endfor %}
+</body>
+</html>

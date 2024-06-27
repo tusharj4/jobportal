@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+html>
+<head>
+    <title>{{ company.name }}</title>
+</head>
+<body>
+    <h1>{{ company.name }}</h1>
+    <p>{{ company.description }}</p>
+    <p>Website: <a href="{{ company.website }}">{{ company.website }}</a></p>
+    
+    <h2>Jobs at {{ company.name }}</h2>
+    {% for job in company_jobs %}
+        <div>
+            <h3><a href="{% url 'job_detail' job.id %}">{{ job.title }}</a></h3>
+            <p>Location: {{ job.location }}</p>
+            <p>Salary: ${{ job.salary }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
