@@ -5,6 +5,11 @@ from django.contrib.auth.decorators import login_required
 from .forms import JobForm
 from .forms import ApplicationForm
 from .models import Application
+from ratelimit.decorators import ratelimitfrom django.core.cache import cache
+from django.views.decorators.cache import cache_page
+
+@cache_page(60 * 15)  # Cache for 15 minutes
+@ratelimit(key='ip', rate='5/m')
 
 def job_list(request):
     query = request.GET.get('q')
